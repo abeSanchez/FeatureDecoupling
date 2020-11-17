@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --time=05:15:00
-#SBATCH --gpus=8
-#SBATCH --cpus-per-gpu=8
+#SBATCH --gpus=2
+#SBATCH --cpus-per-gpu=4
 #SBATCH --gres-flags=enforce-binding
-#SBATCH --output=cifar10-train-slurm-%J.out
+#SBATCH --output=fd-train-slurm-%J.out
 
 # Output some preliminaries before we begin
 date
@@ -26,7 +26,7 @@ source activate pytorch-gpu
 
 # Run TensorFlow
 echo
-time python models/tutorials/image/cifar10/cifar10_train.py --train_dir=./out --tmp_dir=./tmp
+python main.py --exp=TinyImageNet_Decoupling_AlexNet --evaluate 0
 echo
 
 # You’re done!
