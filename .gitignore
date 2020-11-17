@@ -5,6 +5,7 @@
 __pycache__/
 *.pyc
 
+config_env.*
 config_env__*.*
 
 *.tar.gz
