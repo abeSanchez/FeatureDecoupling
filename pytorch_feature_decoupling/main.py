@@ -7,6 +7,7 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import imp
+#from importlib.machinery import SourceFileLoader as imp
 import numpy as np
 
 import torch
@@ -43,6 +44,7 @@ data_test_opt = config['data_test_opt']
 config['disp_step'] = args_opt.disp_step
 
 from dataloader import GenericDataset, DataLoader
+
 dataset_train = GenericDataset(
     dataset_name=data_train_opt['dataset_name'],
     split=data_train_opt['split'],
@@ -66,6 +68,7 @@ dloader_test = DataLoader(
     shuffle=False)
 
 is_evaluation = True if (args_opt.evaluate==1) else False
+
 if is_evaluation:
     logging.info("### ----- Evaluation: inference only. ----- ###")
 else:
@@ -77,6 +80,7 @@ else:
     logging.info("### ----- GPU device is unavailable, computation will be performed on CPU. ----- ###")
 
 import algorithms as alg
+
 algorithm = getattr(alg, config['algorithm_type'])(config)
 
 if torch.cuda.is_available(): # enable cuda

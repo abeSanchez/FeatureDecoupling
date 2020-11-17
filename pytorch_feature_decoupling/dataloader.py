@@ -114,6 +114,31 @@ class GenericDataset(data.Dataset):
             self.transform_augmentation_normalize = transforms.Compose(transforms_list_augmentation+transforms_list_normalize)
             self.data = Places205(root=env.PLACES205_DIR, split=self.split, transform=self.transform_augmentation_normalize)
 
+        elif self.dataset_name=='tiny-imagenet':
+            assert(self.split=='train' or self.split=='val')
+
+            if self.split!='train':
+                transforms_list_augmentation = [transforms.Resize(256),
+                                                transforms.CenterCrop(224)]
+            else:
+                if self.random_sized_crop:
+                    transforms_list_augmentation = [transforms.Resize(256),
+                                                    transforms.RandomResizedCrop(224),
+                                                    transforms.RandomHorizontalFlip()]
+                else:
+                    transforms_list_augmentation = [transforms.Resize(256),
+                                                    transforms.RandomCrop(224),
+                                                    transforms.RandomHorizontalFlip()]
+
+            self.mean_pix = [0.485, 0.456, 0.406]
+            self.std_pix = [0.229, 0.224, 0.225]
+            transforms_list_normalize = [transforms.ToTensor(),
+                                         transforms.Normalize(mean=self.mean_pix, std=self.std_pix)]
+
+            self.transform_augmentation_normalize = transforms.Compose(transforms_list_augmentation+transforms_list_normalize)
+            split_data_dir = env.TINY_IMAGENET_DIR + '/' + self.split
+            self.data = datasets.ImageFolder(split_data_dir, self.transform_augmentation_normalize)
+
         else:
             raise ValueError('Not recognized dataset {0}'.format(self.dataset_name))
 

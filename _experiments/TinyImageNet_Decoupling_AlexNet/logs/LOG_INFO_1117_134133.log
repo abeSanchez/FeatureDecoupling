@@ -1,0 +1,44 @@
+[2020-11-17 13:41:33] INFO: Algorithm options {'data_train_opt': {'batch_size': 192, 'unsupervised': True, 'random_sized_crop': True, 'dataset_name': 'tiny-imagenet', 'split': 'train'}, 'data_test_opt': {'batch_size': 192, 'unsupervised': True, 'random_sized_crop': False, 'dataset_name': 'tiny-imagenet', 'split': 'val'}, 'max_num_epochs': 245, 'networks': {'feature': {'def_file': 'architectures/AlexNetFeature.py', 'pretrained': None, 'opt': {}, 'optim_params': {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(90, 0.01), (130, 0.001), (190, 0.0001), (210, 1e-05), (230, 0.0001), (245, 1e-05)]}}, 'classifier': {'def_file': 'architectures/AlexNetClassifier.py', 'pretrained': None, 'opt': {'num_classes': 4}, 'optim_params': {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(90, 0.01), (130, 0.001), (190, 0.0001), (210, 1e-05), (230, 0.0001), (245, 1e-05)]}}, 'norm': {'def_file': 'architectures/LinearTransformationNorm.py', 'pretrained': None, 'opt': {'low_dim': 128, 'num_feat': 2048}, 'optim_params': {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(90, 0.01), (130, 0.001), (190, 0.0001), (210, 1e-05), (230, 0.0001), (245, 1e-05)]}}}, 'criterions': {'loss_cls': {'ctype': 'CrossEntropyLoss', 'opt': {'reduce': False}}, 'loss_mse': {'ctype': 'MSELoss', 'opt': None}, 'nce_average': {'ctype': 'NCEAverage', 'opt': {'def_file': 'architectures/NCEAverage.py', 'net_opt': {'low_dim': 128, 'ndata': 100000, 'nce_k': 4096, 'nce_t': 0.07, 'nce_m': 0.5}}}, 'nce_criterion': {'ctype': 'NCECriterion', 'opt': {'def_file': 'architectures/NCECriterion.py', 'net_opt': {'ndata': 100000}}}}, 'lambda_loss': {'cls': 1.0, 'mse': 1.0, 'nce': 1.0}, 'gama': 2, 'algorithm_type': 'DecouplingModel', 'exp_dir': '../_experiments/TinyImageNet_Decoupling_AlexNet', 'disp_step': 1}
+[2020-11-17 13:41:33] INFO: Set network feature
+[2020-11-17 13:41:33] INFO: ==> Initiliaze network feature from file architectures/AlexNetFeature.py with opts: {}
+[2020-11-17 13:41:33] INFO: Set network classifier
+[2020-11-17 13:41:33] INFO: ==> Initiliaze network classifier from file architectures/AlexNetClassifier.py with opts: {'num_classes': 4}
+[2020-11-17 13:41:33] INFO: Set network norm
+[2020-11-17 13:41:33] INFO: ==> Initiliaze network norm from file architectures/LinearTransformationNorm.py with opts: {'low_dim': 128, 'num_feat': 2048}
+[2020-11-17 13:41:33] INFO: Initialize criterion[loss_cls]: CrossEntropyLoss with options: {'reduce': False}
+[2020-11-17 13:41:33] INFO: Initialize criterion[loss_mse]: MSELoss with options: None
+[2020-11-17 13:41:33] INFO: Initialize criterion[nce_average]: NCEAverage with options: {'def_file': 'architectures/NCEAverage.py', 'net_opt': {'low_dim': 128, 'ndata': 100000, 'nce_k': 4096, 'nce_t': 0.07, 'nce_m': 0.5}}
+[2020-11-17 13:41:35] INFO: Initialize criterion[nce_criterion]: NCECriterion with options: {'def_file': 'architectures/NCECriterion.py', 'net_opt': {'ndata': 100000}}
+[2020-11-17 13:41:35] INFO: ==> Initiliaze network NCECriterion from file architectures/NCECriterion.py with opts: {'ndata': 100000}
+[2020-11-17 13:41:39] INFO: Initialize optimizer: sgd with params: {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(90, 0.01), (130, 0.001), (190, 0.0001), (210, 1e-05), (230, 0.0001), (245, 1e-05)]} for network: feature
+[2020-11-17 13:41:39] INFO: Initialize optimizer: sgd with params: {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(90, 0.01), (130, 0.001), (190, 0.0001), (210, 1e-05), (230, 0.0001), (245, 1e-05)]} for network: classifier
+[2020-11-17 13:41:39] INFO: Initialize optimizer: sgd with params: {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(90, 0.01), (130, 0.001), (190, 0.0001), (210, 1e-05), (230, 0.0001), (245, 1e-05)]} for network: norm
+[2020-11-17 13:41:39] INFO: 
+
+[2020-11-17 13:41:39] INFO: Training epoch [  1 / 245]
+[2020-11-17 13:41:39] INFO: ==> Set to feature optimizer lr = 0.0100000000
+[2020-11-17 13:41:39] INFO: ==> Set to classifier optimizer lr = 0.0100000000
+[2020-11-17 13:41:39] INFO: ==> Set to norm optimizer lr = 0.0100000000
+[2020-11-17 13:41:39] INFO: Training: TinyImageNet_Decoupling_AlexNet
+[2020-11-17 13:41:39] INFO: ==> Dataset: tiny-imagenet_train [100000 images]
+[2020-11-17 13:41:39] INFO: ==> Iteration steps in one epoch: 521 [batch size 192]
+[2020-11-17 13:42:36] INFO: ==> Iteration [  1][   1 /  521]: {'prec_cls': 24.0885, 'loss': 11.5924, 'loss_cls': 1.4095, 'loss_mse': 0.0702, 'loss_nce': 10.1127, 'load_time': 9.1408, 'process_time': 90.8592}
+[2020-11-17 13:43:32] INFO: ==> Iteration [  1][   2 /  521]: {'prec_cls': 25.4557, 'loss': 11.7295, 'loss_cls': 1.407, 'loss_mse': 0.0659, 'loss_nce': 10.2567, 'load_time': 9.2579, 'process_time': 90.7421}
+[2020-11-17 13:44:27] INFO: ==> Iteration [  1][   3 /  521]: {'prec_cls': 26.3455, 'loss': 11.7682, 'loss_cls': 1.3979, 'loss_mse': 0.0618, 'loss_nce': 10.3084, 'load_time': 9.2768, 'process_time': 90.7232}
+[2020-11-17 13:45:21] INFO: ==> Iteration [  1][   4 /  521]: {'prec_cls': 26.8229, 'loss': 11.8773, 'loss_cls': 1.3932, 'loss_mse': 0.058, 'loss_nce': 10.4261, 'load_time': 9.3211, 'process_time': 90.6789}
+[2020-11-17 13:46:16] INFO: ==> Iteration [  1][   5 /  521]: {'prec_cls': 28.0469, 'loss': 11.9894, 'loss_cls': 1.3884, 'loss_mse': 0.055, 'loss_nce': 10.5459, 'load_time': 9.3637, 'process_time': 90.6363}
+[2020-11-17 13:47:11] INFO: ==> Iteration [  1][   6 /  521]: {'prec_cls': 28.9062, 'loss': 12.1396, 'loss_cls': 1.3828, 'loss_mse': 0.0521, 'loss_nce': 10.7047, 'load_time': 9.356, 'process_time': 90.644}
+[2020-11-17 13:48:05] INFO: ==> Iteration [  1][   7 /  521]: {'prec_cls': 29.6689, 'loss': 12.2899, 'loss_cls': 1.3796, 'loss_mse': 0.0492, 'loss_nce': 10.8611, 'load_time': 9.37, 'process_time': 90.63}
+[2020-11-17 13:49:00] INFO: ==> Iteration [  1][   8 /  521]: {'prec_cls': 29.8991, 'loss': 12.4606, 'loss_cls': 1.3794, 'loss_mse': 0.0462, 'loss_nce': 11.035, 'load_time': 9.3492, 'process_time': 90.6508}
+[2020-11-17 13:49:55] INFO: ==> Iteration [  1][   9 /  521]: {'prec_cls': 29.8032, 'loss': 12.6243, 'loss_cls': 1.381, 'loss_mse': 0.0436, 'loss_nce': 11.1997, 'load_time': 9.3422, 'process_time': 90.6578}
+[2020-11-17 13:50:54] INFO: ==> Iteration [  1][  10 /  521]: {'prec_cls': 30.1693, 'loss': 12.7834, 'loss_cls': 1.3802, 'loss_mse': 0.0411, 'loss_nce': 11.3622, 'load_time': 9.3376, 'process_time': 90.6624}
+[2020-11-17 13:51:49] INFO: ==> Iteration [  1][  11 /  521]: {'prec_cls': 30.6226, 'loss': 12.9762, 'loss_cls': 1.3769, 'loss_mse': 0.0387, 'loss_nce': 11.5606, 'load_time': 9.341, 'process_time': 90.659}
+[2020-11-17 13:52:45] INFO: ==> Iteration [  1][  12 /  521]: {'prec_cls': 31.5104, 'loss': 13.1862, 'loss_cls': 1.3731, 'loss_mse': 0.0365, 'loss_nce': 11.7766, 'load_time': 9.3236, 'process_time': 90.6764}
+[2020-11-17 13:53:41] INFO: ==> Iteration [  1][  13 /  521]: {'prec_cls': 31.7208, 'loss': 13.4047, 'loss_cls': 1.3723, 'loss_mse': 0.0345, 'loss_nce': 11.9979, 'load_time': 9.3366, 'process_time': 90.6634}
+[2020-11-17 13:54:37] INFO: ==> Iteration [  1][  14 /  521]: {'prec_cls': 32.487, 'loss': 13.6364, 'loss_cls': 1.3691, 'loss_mse': 0.0327, 'loss_nce': 12.2346, 'load_time': 9.341, 'process_time': 90.659}
+[2020-11-17 13:55:38] INFO: ==> Iteration [  1][  15 /  521]: {'prec_cls': 32.6823, 'loss': 13.8525, 'loss_cls': 1.3674, 'loss_mse': 0.031, 'loss_nce': 12.4542, 'load_time': 9.3408, 'process_time': 90.6592}
+[2020-11-17 13:56:36] INFO: ==> Iteration [  1][  16 /  521]: {'prec_cls': 33.0648, 'loss': 14.06, 'loss_cls': 1.3654, 'loss_mse': 0.0294, 'loss_nce': 12.6652, 'load_time': 9.3546, 'process_time': 90.6454}
+[2020-11-17 13:57:38] INFO: ==> Iteration [  1][  17 /  521]: {'prec_cls': 33.1572, 'loss': 14.2814, 'loss_cls': 1.3639, 'loss_mse': 0.028, 'loss_nce': 12.8895, 'load_time': 9.4463, 'process_time': 90.5537}
+[2020-11-17 13:58:39] INFO: ==> Iteration [  1][  18 /  521]: {'prec_cls': 33.2465, 'loss': 14.4823, 'loss_cls': 1.3647, 'loss_mse': 0.0267, 'loss_nce': 13.0909, 'load_time': 9.4668, 'process_time': 90.5332}
+[2020-11-17 13:59:40] INFO: ==> Iteration [  1][  19 /  521]: {'prec_cls': 33.1552, 'loss': 14.7253, 'loss_cls': 1.3647, 'loss_mse': 0.0255, 'loss_nce': 13.335, 'load_time': 9.4785, 'process_time': 90.5215}
+[2020-11-17 14:00:41] INFO: ==> Iteration [  1][  20 /  521]: {'prec_cls': 33.2161, 'loss': 14.9506, 'loss_cls': 1.3645, 'loss_mse': 0.0244, 'loss_nce': 13.5617, 'load_time': 9.4377, 'process_time': 90.5623}
