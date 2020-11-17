@@ -41,7 +41,7 @@ class DecouplingModel(Algorithm):
         self.tensors['index'] = torch.LongTensor()
         self.tensors['index_index'] = torch.LongTensor()
         self.tensors['labels'] = torch.LongTensor()
-        self.loadPUImageProb()
+        #self.loadPUImageProb()
         
     def train_step(self, batch):
         start = time.time()
@@ -91,13 +91,13 @@ class DecouplingModel(Algorithm):
         #********************************************************
 
         #*************** COMPUTE LOSSES *************************
-        weight = torch.tensor(np.array(self.train_weight)[idx_train], dtype=torch.float, device=labels.device, requires_grad=False)
+        #weight = torch.tensor(np.array(self.train_weight)[idx_train], dtype=torch.float, device=labels.device, requires_grad=False)
         with torch.set_grad_enabled(True):
             loss_cls_each = self.criterions['loss_cls'](pred, labels)
-            if self.curr_epoch<210:
+            if self.curr_epoch<260:
                 loss_cls = torch.sum(loss_cls_each)/loss_cls_each.shape[0]
-            else:
-                loss_cls = torch.dot(loss_cls_each,weight)/loss_cls_each.shape[0]
+            #else:
+            #    loss_cls = torch.dot(loss_cls_each,weight)/loss_cls_each.shape[0]
 
             loss_mse = self.criterions['loss_mse'](feature_invariance, feature_invariance_instance_mean)
 
