@@ -118,14 +118,13 @@ class GenericDataset(data.Dataset):
             assert(self.split=='train' or self.split=='val')
 
             if self.split!='train':
-                transforms_list_augmentation = [transforms.Resize(256),
-                                                transforms.CenterCrop(224)]
+                transforms_list_augmentation = [transforms.Resize(224)]
             else:
                 if self.random_sized_crop:
-                    transforms_list_augmentation = [transforms.Resize(64),
+                    transforms_list_augmentation = [transforms.Resize(224),
                                                     transforms.RandomHorizontalFlip()]
                 else:
-                    transforms_list_augmentation = [transforms.Resize(64),
+                    transforms_list_augmentation = [transforms.Resize(224),
                                                     transforms.RandomHorizontalFlip()]
 
             self.mean_pix = [0.485, 0.456, 0.406]
