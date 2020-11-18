@@ -17,12 +17,8 @@ module load anaconda/anaconda3
 module load gcc/gcc-7.1.0
 module load cuda/cuda-10.2
 
-# Have Nvidia tell us the GPU/CPU mapping so we know
-nvidia-smi topo -m
-echo
-
 # Activate the GPU version of TensorFlow
-source activate pytorch-gpu
+source activate py36
 
 # Run TensorFlow
 echo

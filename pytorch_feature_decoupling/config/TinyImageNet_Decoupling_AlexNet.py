@@ -1,11 +1,11 @@
-batch_size   = 192
+batch_size   = 256
 
 config = {}
 # set the parameters related to the training and testing set
 data_train_opt = {} 
 data_train_opt['batch_size'] = batch_size
 data_train_opt['unsupervised'] = True
-data_train_opt['random_sized_crop'] = True
+data_train_opt['random_sized_crop'] = False
 data_train_opt['dataset_name'] = 'tiny-imagenet'
 data_train_opt['split'] = 'train'
 
@@ -18,7 +18,7 @@ data_test_opt['split'] = 'val'
 
 config['data_train_opt'] = data_train_opt
 config['data_test_opt']  = data_test_opt
-config['max_num_epochs'] = 245
+config['max_num_epochs'] = 200
 
 
 

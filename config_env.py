@@ -1,7 +1,7 @@
 # This file configures platform, path and datasets
 import os
 
-PROCESS_UNIT = "gpu" # or "cpu"
+PROCESS_UNIT = "gpu"
 
 # Path to caffe
 CAFFE_DIR = os.path.join("/home", "workspace", "caffe")

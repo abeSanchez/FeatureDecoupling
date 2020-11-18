@@ -15,7 +15,7 @@ class AlexNetFeature(nn.Module):
         super(AlexNetFeature, self).__init__()
 
         conv1 = nn.Sequential(
-            nn.Conv2d(3, 64, kernel_size=11, stride=4, padding=2),
+            nn.Conv2d(3, 64, kernel_size=11, stride=1, padding=2),
             nn.BatchNorm2d(64),
             nn.ReLU(inplace=True),
         )
