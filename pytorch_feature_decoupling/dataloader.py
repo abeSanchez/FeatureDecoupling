@@ -186,13 +186,13 @@ class DataLoader(object):
             def _load_function(idx):
                 idx = idx % len(self.dataset)
                 img, _, index = self.dataset[idx]
-                #TODO: rotation_labels = torch.LongTensor([0, 1, 2, 3])
-                rotation_labels = torch.LongTensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23])
-                #TODO: image_indices = torch.LongTensor([index, index, index, index])
-                image_indices = torch.LongTensor([index, index, index, index, index, index, \
-                                                  index, index, index, index, index, index, \
-                                                  index, index, index, index, index, index, \
-                                                  index, index, index, index, index, index ])
+                rotation_labels = torch.LongTensor([0, 1, 2, 3])
+                #rotation_labels = torch.LongTensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23])
+                image_indices = torch.LongTensor([index, index, index, index])
+                #image_indices = torch.LongTensor([index, index, index, index, index, index, \
+                                                #   index, index, index, index, index, index, \
+                                                #   index, index, index, index, index, index, \
+                                                #   index, index, index, index, index, index ])
                 return img, rotation_labels, image_indices
             def _collate_fun(batch):
                 batch = default_collate(batch)
