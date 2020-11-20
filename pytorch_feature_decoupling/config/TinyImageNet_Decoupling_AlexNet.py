@@ -1,4 +1,4 @@
-batch_size   = 256
+batch_size   = 128
 
 config = {}
 # set the parameters related to the training and testing set
@@ -18,7 +18,7 @@ data_test_opt['split'] = 'val'
 
 config['data_train_opt'] = data_train_opt
 config['data_test_opt']  = data_test_opt
-config['max_num_epochs'] = 25
+config['max_num_epochs'] = 50
 
 
 
