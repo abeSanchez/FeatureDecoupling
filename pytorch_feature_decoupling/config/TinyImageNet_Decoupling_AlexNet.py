@@ -23,7 +23,7 @@ config['max_num_epochs'] = 50
 
 
 networks = {}
-LUT_lr = [(90,0.01), (130,0.001), (190,0.0001), (210,0.00001), (230,0.0001), (245,0.00001)]
+LUT_lr = [(25,0.01), (30,0.001), (40,0.0001), (210,0.00001), (230,0.0001), (245,0.00001)]
 net_optim_params = {'optim_type': 'sgd', 'lr': 0.1, 'momentum':0.9, 'weight_decay': 5e-4, 'nesterov': True, 'LUT_lr':LUT_lr}
 
 # feature extractor network
