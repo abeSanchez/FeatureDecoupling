@@ -1,0 +1,24 @@
+[2020-11-19 21:07:32] INFO: Algorithm options {'data_train_opt': {'batch_size': 256, 'unsupervised': True, 'random_sized_crop': False, 'dataset_name': 'tiny-imagenet', 'split': 'train'}, 'data_test_opt': {'batch_size': 256, 'unsupervised': True, 'random_sized_crop': False, 'dataset_name': 'tiny-imagenet', 'split': 'val'}, 'max_num_epochs': 200, 'networks': {'feature': {'def_file': 'architectures/AlexNetFeature.py', 'pretrained': None, 'opt': {}, 'optim_params': {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(90, 0.01), (130, 0.001), (190, 0.0001), (210, 1e-05), (230, 0.0001), (245, 1e-05)]}}, 'classifier': {'def_file': 'architectures/AlexNetClassifier.py', 'pretrained': None, 'opt': {'num_classes': 24}, 'optim_params': {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(90, 0.01), (130, 0.001), (190, 0.0001), (210, 1e-05), (230, 0.0001), (245, 1e-05)]}}, 'norm': {'def_file': 'architectures/LinearTransformationNorm.py', 'pretrained': None, 'opt': {'low_dim': 128, 'num_feat': 2048}, 'optim_params': {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(90, 0.01), (130, 0.001), (190, 0.0001), (210, 1e-05), (230, 0.0001), (245, 1e-05)]}}}, 'criterions': {'loss_cls': {'ctype': 'CrossEntropyLoss', 'opt': {'reduce': False}}, 'loss_mse': {'ctype': 'MSELoss', 'opt': None}, 'nce_average': {'ctype': 'NCEAverage', 'opt': {'def_file': 'architectures/NCEAverage.py', 'net_opt': {'low_dim': 128, 'ndata': 100000, 'nce_k': 4096, 'nce_t': 0.07, 'nce_m': 0.5}}}, 'nce_criterion': {'ctype': 'NCECriterion', 'opt': {'def_file': 'architectures/NCECriterion.py', 'net_opt': {'ndata': 100000}}}}, 'lambda_loss': {'cls': 1.0, 'mse': 1.0, 'nce': 1.0}, 'gama': 2, 'algorithm_type': 'DecouplingColorModel', 'exp_dir': '../_experiments/TinyImageNet_DecouplingColor_AlexNet', 'disp_step': 1}
+[2020-11-19 21:07:32] INFO: Set network feature
+[2020-11-19 21:07:32] INFO: ==> Initiliaze network feature from file architectures/AlexNetFeature.py with opts: {}
+[2020-11-19 21:07:32] INFO: Set network classifier
+[2020-11-19 21:07:32] INFO: ==> Initiliaze network classifier from file architectures/AlexNetClassifier.py with opts: {'num_classes': 24}
+[2020-11-19 21:07:32] INFO: Set network norm
+[2020-11-19 21:07:32] INFO: ==> Initiliaze network norm from file architectures/LinearTransformationNorm.py with opts: {'low_dim': 128, 'num_feat': 2048}
+[2020-11-19 21:07:32] INFO: Initialize criterion[loss_cls]: CrossEntropyLoss with options: {'reduce': False}
+[2020-11-19 21:07:32] INFO: Initialize criterion[loss_mse]: MSELoss with options: None
+[2020-11-19 21:07:32] INFO: Initialize criterion[nce_average]: NCEAverage with options: {'def_file': 'architectures/NCEAverage.py', 'net_opt': {'low_dim': 128, 'ndata': 100000, 'nce_k': 4096, 'nce_t': 0.07, 'nce_m': 0.5}}
+[2020-11-19 21:07:34] INFO: Initialize criterion[nce_criterion]: NCECriterion with options: {'def_file': 'architectures/NCECriterion.py', 'net_opt': {'ndata': 100000}}
+[2020-11-19 21:07:34] INFO: ==> Initiliaze network NCECriterion from file architectures/NCECriterion.py with opts: {'ndata': 100000}
+[2020-11-19 21:07:36] INFO: Initialize optimizer: sgd with params: {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(90, 0.01), (130, 0.001), (190, 0.0001), (210, 1e-05), (230, 0.0001), (245, 1e-05)]} for network: feature
+[2020-11-19 21:07:36] INFO: Initialize optimizer: sgd with params: {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(90, 0.01), (130, 0.001), (190, 0.0001), (210, 1e-05), (230, 0.0001), (245, 1e-05)]} for network: classifier
+[2020-11-19 21:07:36] INFO: Initialize optimizer: sgd with params: {'optim_type': 'sgd', 'lr': 0.1, 'momentum': 0.9, 'weight_decay': 0.0005, 'nesterov': True, 'LUT_lr': [(90, 0.01), (130, 0.001), (190, 0.0001), (210, 1e-05), (230, 0.0001), (245, 1e-05)]} for network: norm
+[2020-11-19 21:07:36] INFO: 
+
+[2020-11-19 21:07:36] INFO: Training epoch [  1 / 200]
+[2020-11-19 21:07:36] INFO: ==> Set to feature optimizer lr = 0.0100000000
+[2020-11-19 21:07:36] INFO: ==> Set to classifier optimizer lr = 0.0100000000
+[2020-11-19 21:07:36] INFO: ==> Set to norm optimizer lr = 0.0100000000
+[2020-11-19 21:07:36] INFO: Training: TinyImageNet_DecouplingColor_AlexNet
+[2020-11-19 21:07:36] INFO: ==> Dataset: tiny-imagenet_train [100000 images]
+[2020-11-19 21:07:36] INFO: ==> Iteration steps in one epoch: 391 [batch size 256]
