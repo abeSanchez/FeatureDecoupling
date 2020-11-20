@@ -168,13 +168,46 @@ class DecouplingColorModel(Algorithm):
         start = time.time()
         #*************** LOAD BATCH (AND MOVE IT TO GPU) ********
         self.tensors['dataX'].resize_(batch[0].size()).copy_(batch[0])
+        dataX_0 = torch.tensor(self.tensors['dataX'])
         dataX_90 = torch.flip(torch.transpose(self.tensors['dataX'],2,3),[2])
         dataX_180 = torch.flip(torch.flip(self.tensors['dataX'],[2]),[3])
         dataX_270 = torch.transpose(torch.flip(self.tensors['dataX'],[2]),2,3)
 
-        dataX = torch.stack([self.tensors['dataX'], dataX_90, dataX_180, dataX_270], dim=1)
-        batch_size, rotations, channels, height, width = dataX.size()
-        dataX = dataX.view([batch_size*rotations, channels, height, width])
+        dataXPermutated0 = dataX_0[:, self.permutations[0], :, :]
+        dataXPermutated1 = dataX_0[:, self.permutations[1], :, :]
+        dataXPermutated2 = dataX_0[:, self.permutations[2], :, :]
+        dataXPermutated3 = dataX_0[:, self.permutations[3], :, :]
+        dataXPermutated4 = dataX_0[:, self.permutations[4], :, :]
+        dataXPermutated5 = dataX_0[:, self.permutations[5], :, :]
+
+        dataXPermutated6 = dataX_90[:, self.permutations[0], :, :]
+        dataXPermutated7 = dataX_90[:, self.permutations[1], :, :]
+        dataXPermutated8 = dataX_90[:, self.permutations[2], :, :]
+        dataXPermutated9 = dataX_90[:, self.permutations[3], :, :]
+        dataXPermutated10 = dataX_90[:, self.permutations[4], :, :]
+        dataXPermutated11 = dataX_90[:, self.permutations[5], :, :]
+
+        dataXPermutated12 = dataX_180[:, self.permutations[0], :, :]
+        dataXPermutated13 = dataX_180[:, self.permutations[1], :, :]
+        dataXPermutated14 = dataX_180[:, self.permutations[2], :, :]
+        dataXPermutated15 = dataX_180[:, self.permutations[3], :, :]
+        dataXPermutated16 = dataX_180[:, self.permutations[4], :, :]
+        dataXPermutated17 = dataX_180[:, self.permutations[5], :, :]
+        
+        dataXPermutated18 = dataX_270[:, self.permutations[0], :, :]
+        dataXPermutated19 = dataX_270[:, self.permutations[1], :, :]
+        dataXPermutated20 = dataX_270[:, self.permutations[2], :, :]
+        dataXPermutated21 = dataX_270[:, self.permutations[3], :, :]
+        dataXPermutated22 = dataX_270[:, self.permutations[4], :, :]
+        dataXPermutated23 = dataX_270[:, self.permutations[5], :, :]
+
+        dataX = torch.stack([dataXPermutated0, dataXPermutated1, dataXPermutated2, dataXPermutated3, dataXPermutated4, dataXPermutated5, \
+                            dataXPermutated6, dataXPermutated7, dataXPermutated8, dataXPermutated9, dataXPermutated10, dataXPermutated11, \
+                            dataXPermutated12, dataXPermutated13, dataXPermutated14, dataXPermutated15, dataXPermutated16, dataXPermutated17, \
+                            dataXPermutated18, dataXPermutated19, dataXPermutated20, dataXPermutated21, dataXPermutated22, dataXPermutated23 \
+                                ], dim=1)
+        batch_size, permutations, channels, height, width = dataX.size()
+        dataX = dataX.view([batch_size*permutations, channels, height, width])
 
         self.tensors['labels'].resize_(batch[1].size()).copy_(batch[1])
         #********************************************************
