@@ -74,7 +74,7 @@ class MiniPlaces(data.Dataset):
 
         self.transform = transform
         self.target_transform = target_transform
-        with open(split_txt_file, 'r') as f:
+        with open(split_txt_file) as f:
             self.img_files = []
             self.labels = []
             for row in f:
