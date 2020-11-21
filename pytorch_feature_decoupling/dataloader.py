@@ -77,7 +77,8 @@ class MiniPlaces(data.Dataset):
         with open(split_txt_file) as f:
             self.img_files = []
             self.labels = []
-            for row in f:
+            for ro in f:
+                row = ro.split()
                 self.img_files.append(row[0])
                 self.labels.append(int(row[1]))
 
