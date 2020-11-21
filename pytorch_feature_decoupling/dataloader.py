@@ -179,13 +179,13 @@ class GenericDataset(data.Dataset):
 
         elif self.dataset_name=='miniplaces':
             if self.split!='train':
-                transforms_list_augmentation = [transforms.CenterCrop(224)]
+                transforms_list_augmentation = [transforms.Resize(224)]
             else:
                 if self.random_sized_crop:
-                    transforms_list_augmentation = [transforms.RandomResizedCrop(224),
+                    transforms_list_augmentation = [transforms.Resize(224),
                                                     transforms.RandomHorizontalFlip()]
                 else:
-                    transforms_list_augmentation = [transforms.RandomCrop(224),
+                    transforms_list_augmentation = [transforms.Resize(224),
                                                     transforms.RandomHorizontalFlip()]
 
             # ImageNet mean and var for ImageNet pretrained models.

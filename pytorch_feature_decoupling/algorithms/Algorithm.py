@@ -374,6 +374,10 @@ class Algorithm():
 
         return eval_stats.average()
 
+    def getNearestNeighbors(self, dloader):
+        
+        return None
+
     def adjust_learning_rates(self, epoch):
         # filter out the networks that are not trainable and that do
         # not have a learning rate Look Up Table (LUT_lr) in their optim_params
