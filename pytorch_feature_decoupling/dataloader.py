@@ -63,6 +63,45 @@ class Places205(data.Dataset):
     def __len__(self):
         return len(self.labels)
 
+
+class MiniPlaces(data.Dataset):
+    def __init__(self, root, split, transform=None, target_transform=None):
+        self.root = os.path.expanduser(root)
+        self.data_folder  = os.path.join(self.root, 'images')
+        self.split_folder = os.path.join(self.root, 'data')
+        assert(split=='train' or split=='val')
+        split_txt_file = os.path.join(self.split_folder, split+'.txt')
+
+        self.transform = transform
+        self.target_transform = target_transform
+        with open(split_txt_file, 'r') as f:
+            self.img_files = []
+            self.labels = []
+            for row in f:
+                self.img_files.append(row[0])
+                self.labels.append(int(row[1]))
+
+    def __getitem__(self, index):
+        """
+        Args:
+            index (int): Index
+
+        Returns:
+            tuple: (image, target) where target is index of the target class.
+        """
+        image_path = os.path.join(self.data_folder, self.img_files[index])
+        img = Image.open(image_path).convert('RGB')
+        target = self.labels[index]
+
+        if self.transform is not None:
+            img = self.transform(img)
+        if self.target_transform is not None:
+            target = self.target_transform(target)
+        return img, target
+
+    def __len__(self):
+        return len(self.labels)
+
 class GenericDataset(data.Dataset):
     def __init__(self, dataset_name, split, random_sized_crop=False):
         self.split = split.lower()
@@ -135,6 +174,27 @@ class GenericDataset(data.Dataset):
             self.transform_augmentation_normalize = transforms.Compose(transforms_list_augmentation+transforms_list_normalize)
             split_data_dir = env.TINY_IMAGENET_DIR + '/' + self.split
             self.data = datasets.ImageFolder(split_data_dir, self.transform_augmentation_normalize)
+
+        elif self.dataset_name=='miniplaces':
+            if self.split!='train':
+                transforms_list_augmentation = [transforms.CenterCrop(224)]
+            else:
+                if self.random_sized_crop:
+                    transforms_list_augmentation = [transforms.RandomResizedCrop(224),
+                                                    transforms.RandomHorizontalFlip()]
+                else:
+                    transforms_list_augmentation = [transforms.RandomCrop(224),
+                                                    transforms.RandomHorizontalFlip()]
+
+            # ImageNet mean and var for ImageNet pretrained models.
+            self.mean_pix = [0.485, 0.456, 0.406]
+            self.std_pix = [0.229, 0.224, 0.225]
+            transforms_list_normalize = [transforms.ToTensor(),
+                                         transforms.Normalize(mean=self.mean_pix, std=self.std_pix)]
+
+            self.transform_augmentation_normalize = transforms.Compose(transforms_list_augmentation+transforms_list_normalize)
+            self.data = MiniPlaces(root=env.MINIPLACES_DIR, split=self.split, transform=self.transform_augmentation_normalize)
+
 
         else:
             raise ValueError('Not recognized dataset {0}'.format(self.dataset_name))
