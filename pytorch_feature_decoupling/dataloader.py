@@ -91,6 +91,7 @@ class MiniPlaces(data.Dataset):
             tuple: (image, target) where target is index of the target class.
         """
         image_path = os.path.join(self.data_folder, self.img_files[index])
+        print(image_path)
         img = Image.open(image_path).convert('RGB')
         target = self.labels[index]
 
