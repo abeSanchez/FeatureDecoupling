@@ -27,8 +27,8 @@ pretrained = '../_experiments/TinyImageNet_Decoupling_AlexNet/feature_net_epoch5
 networks['feat_extractor'] = {'def_file': 'architectures/AlexNetFeature.py', 'pretrained': pretrained, 'opt': {},  'optim_params': None} 
 
 net_opt_cls = [None] * 2
-net_opt_cls[0] = {'cls_type':'Alexnet_conv4', 'nChannels':256, 'num_classes':1000}
-net_opt_cls[1] = {'cls_type':'Alexnet_conv5', 'nChannels':256, 'num_classes':1000}
+net_opt_cls[0] = {'cls_type':'Alexnet_conv4', 'nChannels':256, 'num_classes':200}
+net_opt_cls[1] = {'cls_type':'Alexnet_conv5', 'nChannels':256, 'num_classes':200}
 out_feat_keys = ['conv4', 'conv5']
 net_optim_params_cls = {'optim_type': 'sgd', 'lr': 0.1, 'momentum':0.9, 'weight_decay': 5e-4, 'nesterov': True, 'LUT_lr':[(10, 0.01),(20, 0.002),(30, 0.0004),(40, 0.00008)]}
 networks['classifier']  = {'def_file': 'architectures/MultipleNonLinearClassifiers.py', 'pretrained': None, 'opt': net_opt_cls, 'optim_params': net_optim_params_cls}
