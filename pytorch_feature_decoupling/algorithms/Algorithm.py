@@ -387,7 +387,7 @@ class Algorithm():
         for image_file in image_file_list:
             images.append(dloader.getImage(image_file)) 
 
-        queryImageFeatures = self.getFeatures(torch.from_numpy(images))
+        queryImageFeatures = self.getFeatures(torch.from_numpy(images[0]))
 
         for idx, batch in enumerate(tqdm(dloader(), total=len(dloader))):
             batchFeatures = self.getFeatures(batch)
