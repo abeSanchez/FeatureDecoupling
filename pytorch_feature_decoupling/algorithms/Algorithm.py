@@ -389,7 +389,7 @@ class Algorithm():
 
         print(images[0].shape)
 
-        queryImageFeatures = self.getFeatures(images[0])
+        queryImageFeatures = self.getFeatures(images[0].view(-1, 3, 244, 244))
 
         for idx, batch in enumerate(tqdm(dloader(), total=len(dloader))):
             batchFeatures = self.getFeatures(batch)
