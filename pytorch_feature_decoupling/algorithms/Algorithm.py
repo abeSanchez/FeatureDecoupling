@@ -374,8 +374,27 @@ class Algorithm():
 
         return eval_stats.average()
 
-    def getNearestNeighbors(self, dloader):
-        
+    def getNearestNeighbors(self, dloader, image_file_list):
+        self.logger.info('Nearest Neighbors: %s' % os.path.basename(self.exp_dir))
+        self.logger.info('==> Dataset: %s [%d images]' % (dloader.dataset.name, len(dloader.dataset)))
+        self.logger.info("==> Iteration steps in one epoch: %d [batch size %d]"%(len(dloader), dloader.batch_size))
+    
+        for key, network in self.networks.items():
+            network.eval()
+
+        images = []
+
+        for image_file in image_file_list:
+            images.append(dloader.getImage(image_file)) 
+
+        queryImageFeatures = self.getFeatures(torch.tensor([images]))       
+
+        for idx, batch in enumerate(tqdm(dloader(), total=len(dloader))):
+            batchFeatures = self.getFeatures(batch)
+
+            for i in range(dloader.batch_size):
+                print(batchFeatures.shape)
+
         return None
 
     def adjust_learning_rates(self, epoch):
@@ -438,6 +457,9 @@ class Algorithm():
                 metrics for that batch. The key names on the dictionary can be
                 arbitrary.
         """
+        pass
+
+    def getFeatures(self, batch):
         pass
 
     def allocate_tensors(self):

@@ -240,6 +240,14 @@ class DataLoader(object):
             lambda x: x.transpose(1,2,0).astype(np.uint8),
         ])
 
+        transforms_list_augmentation = [transforms.Resize(224)]
+        mean_pix = [0.485, 0.456, 0.406]
+        std_pix = [0.229, 0.224, 0.225]
+        transforms_list_normalize = [transforms.ToTensor(),
+                                    transforms.Normalize(mean=mean_pix, std=std_pix)]
+
+        self.transform = transforms.Compose(transforms_list_augmentation+transforms_list_normalize)
+
     def get_iterator(self):
         random.seed(self.rand_seed)
         if self.unsupervised:
@@ -277,6 +285,11 @@ class DataLoader(object):
                                            num_workers  = self.num_workers,
                                            shuffle      = self.shuffle)
         return data_loader
+
+    def getImage(self, image_file):
+        img = Image.open(image_file).convert('RGB')
+        img = self.transform(img)
+        return img
 
     def __call__(self, epoch=0):
         self.rand_seed = epoch * self.epoch_size

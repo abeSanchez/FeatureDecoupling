@@ -244,3 +244,17 @@ class DecouplingColorModel(Algorithm):
         record['process_time'] = 100*(batch_process_time/total_time)
 
         return record
+
+    def getFeatures(self, batch):
+        #*************** LOAD BATCH (AND MOVE IT TO GPU) ********
+        self.tensors['dataX'].resize_(batch[0].size()).copy_(batch[0])
+
+        #************ FORWARD THROUGH NET ***********************
+        for _, network in self.networks.items():
+            for param in network.parameters():
+                param.requires_grad = False
+
+        with torch.set_grad_enabled(False):
+            feature = self.networks['feature'](self.tensors['dataX'])
+
+        return feature.cpu
