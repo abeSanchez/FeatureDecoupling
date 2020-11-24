@@ -38,7 +38,10 @@ networks['classifier']  = {'def_file': 'architectures/MultipleLinearClassifiers.
 config['networks'] = networks
 
 criterions = {}
+
 criterions['loss'] = {'ctype':'CrossEntropyLoss', 'opt':None}
 config['criterions'] = criterions
 config['algorithm_type'] = 'DecouplingColorModel'
 config['out_feat_keys'] = out_feat_keys
+config['lambda_loss'] = {'cls':1.0, 'mse':1.0, 'nce':1.0}
+config['gama'] = 2
