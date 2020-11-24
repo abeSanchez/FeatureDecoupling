@@ -69,10 +69,7 @@ dloader_test = DataLoader(
 
 is_evaluation = True if (args_opt.evaluate==1) else False
 
-if is_evaluation:
-    logging.info("### ----- Evaluation: inference only. ----- ###")
-else:
-    logging.info("### ----- Training: train model. ----- ###")
+logging.info("### ----- Nearest Neigbor search. ----- ###")
 
 if torch.cuda.is_available():
     logging.info("### ----- GPU device available, arrays will be copied to cuda. ----- ###")
@@ -86,13 +83,5 @@ algorithm = getattr(alg, config['algorithm_type'])(config)
 if torch.cuda.is_available(): # enable cuda
     algorithm.load_to_gpu()
 
-if args_opt.checkpoint > 0: # load checkpoint
-    algorithm.load_checkpoint(args_opt.checkpoint, train= (not is_evaluation))
-
-if not is_evaluation: # train the algorithm
-    algorithm.solve(dloader_train, dloader_test)
-else:
-    algorithm.evaluate(dloader_test) # evaluate the algorithm
-
-algorithm.getNearestNeighbors(dloader_test, )
+algorithm.getNearestNeighbors(dloader_test,["/home/cap6614.student1/datasets/tiny-imagenet-200/test/images/test_325.JPEG"])
 
