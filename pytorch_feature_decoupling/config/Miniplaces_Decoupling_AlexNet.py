@@ -6,14 +6,14 @@ data_train_opt = {}
 data_train_opt['batch_size'] = batch_size
 data_train_opt['unsupervised'] = True
 data_train_opt['random_sized_crop'] = False
-data_train_opt['dataset_name'] = 'tiny-imagenet'
+data_train_opt['dataset_name'] = 'miniplaces'
 data_train_opt['split'] = 'train'
 
 data_test_opt = {}
 data_test_opt['batch_size'] = batch_size
 data_test_opt['unsupervised'] = True
 data_test_opt['random_sized_crop'] = False
-data_test_opt['dataset_name'] = 'tiny-imagenet'
+data_test_opt['dataset_name'] = 'miniplaces'
 data_test_opt['split'] = 'val'
 
 config['data_train_opt'] = data_train_opt
@@ -30,7 +30,7 @@ net_optim_params = {'optim_type': 'sgd', 'lr': 0.1, 'momentum':0.9, 'weight_deca
 networks['feature'] = {'def_file': 'architectures/AlexNetFeature.py', 'pretrained': None, 'opt': {},  'optim_params': net_optim_params}
 
 # rotation classifier network
-networks['classifier'] = {'def_file': 'architectures/AlexNetClassifier.py', 'pretrained': None, 'opt': {'num_classes':24},  'optim_params': net_optim_params}
+networks['classifier'] = {'def_file': 'architectures/AlexNetClassifier.py', 'pretrained': None, 'opt': {'num_classes':4},  'optim_params': net_optim_params}
 
 # linear transformation normalization network
 low_dim = 128
@@ -46,7 +46,7 @@ criterions = {}
 # Cross entropy loss
 criterions['loss_cls'] = {'ctype':'CrossEntropyLoss', 'opt':{'reduce':False}}
 
-# Distance lossout
+# Distance loss
 criterions['loss_mse'] = {'ctype':'MSELoss', 'opt':None}
 
 # NCE average
@@ -65,4 +65,4 @@ config['criterions'] = criterions
 config['lambda_loss'] = {'cls':1.0, 'mse':1.0, 'nce':1.0}
 config['gama'] = 2
 
-config['algorithm_type'] = 'DecouplingColorModel'
+config['algorithm_type'] = 'DecouplingModel'

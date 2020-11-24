@@ -6,19 +6,19 @@ data_train_opt = {}
 data_train_opt['batch_size'] = batch_size
 data_train_opt['unsupervised'] = True
 data_train_opt['random_sized_crop'] = False
-data_train_opt['dataset_name'] = 'tiny-imagenet'
+data_train_opt['dataset_name'] = 'miniplaces'
 data_train_opt['split'] = 'train'
 
 data_test_opt = {}
 data_test_opt['batch_size'] = batch_size
 data_test_opt['unsupervised'] = True
 data_test_opt['random_sized_crop'] = False
-data_test_opt['dataset_name'] = 'tiny-imagenet'
+data_test_opt['dataset_name'] = 'miniplaces'
 data_test_opt['split'] = 'val'
 
 config['data_train_opt'] = data_train_opt
 config['data_test_opt']  = data_test_opt
-config['max_num_epochs'] = 50
+config['max_num_epochs'] = 25
 
 
 
