@@ -23,7 +23,7 @@ config['max_num_epochs'] = 50
 networks = {}
 
 pretrained = '../_experiments/TinyImageNet_DecouplingColor_AlexNet/feature_net_epoch50'
-networks['feat_extractor'] = {'def_file': 'architectures/AlexNetFeature.py', 'pretrained': pretrained, 'opt': {},  'optim_params': None} 
+networks['feature'] = {'def_file': 'architectures/AlexNetFeature.py', 'pretrained': pretrained, 'opt': {},  'optim_params': None} 
 
 net_opt_cls = [None] * 5
 net_opt_cls[0] = {'pool_type':'max', 'nChannels':64, 'pool_size':12, 'num_classes': 200}
