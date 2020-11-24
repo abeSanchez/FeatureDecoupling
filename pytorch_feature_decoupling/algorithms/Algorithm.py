@@ -387,6 +387,8 @@ class Algorithm():
         for image_file in image_file_list:
             images.append(dloader.getImage(image_file)) 
 
+        print(images[0].shape)
+
         queryImageFeatures = self.getFeatures(images[0])
 
         for idx, batch in enumerate(tqdm(dloader(), total=len(dloader))):
