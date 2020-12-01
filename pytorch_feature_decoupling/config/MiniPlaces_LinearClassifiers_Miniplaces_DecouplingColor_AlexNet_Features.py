@@ -23,7 +23,7 @@ config['max_num_epochs'] = 10
 
 networks = {}
 
-pretrained = '../_experiments/Miniplaces_Decoupling_AlexNet/feature_net_epoch50'
+pretrained = '../_experiments/Miniplaces_DecouplingColor_AlexNet/feature_net_epoch50'
 networks['feat_extractor'] = {'def_file': 'architectures/AlexNetFeature.py', 'pretrained': pretrained, 'opt': {},  'optim_params': None} 
 
 net_opt_cls = [None] * 5
